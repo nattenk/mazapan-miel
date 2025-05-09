@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE>  mazapan y miel inicio  </TITLE> 
+</HEAD>
+<BODY>
+<BODY BGCOLOR=pink>
+  
+<CENTER> <MARQUEE> <IMG SRC=mazapanymiel.GIF> </CENTER></MARQUEE>
+<P>
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Digital</title>
+    <style>
+        #reloj {
+            font-size: 24px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="reloj"></div>
+
+    <script>
+        function actualizarReloj() {
+            const ahora = new Date();
+            const hora = ahora.getHours();
+            const minutos = ahora.getMinutes();
+            const segundos = ahora.getSeconds();
+
+            const horaFormateada = agregarCeroDelante(hora) + ":" + agregarCeroDelante(minutos) + ":" + agregarCeroDelante(segundos);
+            document.getElementById("reloj").textContent = horaFormateada;
+        }
+
+        function agregarCeroDelante(numero) {
+            return numero < 10 ? "0" + numero : numero;
+        }
+        setInterval(actualizarReloj, 1000);
+    </script>
+</body>
+</html>
+  </p>
+<CENTER> <A HREF=pasteles.HTML> <IMG SRC=inicio.GIF WIDTH=320 HEIGTH=370>  </A>
+  <Center><a href=relojdigital.html></a></Center>  
+</BODY>
+</HTML>

@@ -1,0 +1,66 @@
+<form onsubmit="enviarPedido(event)" style="max-width: 500px; margin: auto; font-family: 'Arial'; background-color: #fff8f2; padding: 20px; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <h2 style="text-align: center; color: #b36b5e;">Encarga tu postre</h2>
+
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd;">
+
+  <label for="categoria">Categoría:</label>
+  <select id="categoria" onchange="actualizarSabores()" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd;">
+    <option value="" disabled selected>Selecciona una categoría</option>
+    <option value="Pastel">Pastel</option>
+    <option value="Galletas">Galletas</option>
+    <option value="Tarta">Tarta</option>
+  </select>
+
+  <label for="sabor">Sabor:</label>
+  <select id="sabor" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd;">
+    <option value="" disabled selected>Selecciona primero una categoría</option>
+  </select>
+
+  <label for="cantidad">Cantidad:</label>
+  <input type="number" id="cantidad" min="1" required style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd;">
+
+  <label for="detalles">Detalles adicionales:</label>
+  <textarea id="detalles" rows="4" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ddd;"></textarea>
+
+  <button type="submit" style="width: 100%; background-color: #e6b8a2; color: white; padding: 12px; border: none; border-radius: 10px; font-weight: bold;">Enviar por WhatsApp</button>
+</form>
+
+<script>
+  function actualizarSabores() {
+    const categoria = document.getElementById('categoria').value;
+    const saborSelect = document.getElementById('sabor');
+
+    const sabores = {
+      'Pastel': ['Chocolate', 'Fresa', 'Tres leches', 'Coco'],
+      'Galletas': ['Mantequilla', 'Chocolate', 'Coco', 'Vainilla con chispas de chocolate'],
+      'Tarta': ['Chocolate', 'Fresa', 'Frutas mixtas', 'Manzana']
+    };
+
+    saborSelect.innerHTML = '<option value="" disabled selected>Selecciona un sabor</option>';
+    sabores[categoria].forEach(function(sabor) {
+      const option = document.createElement('option');
+      option.value = sabor;
+      option.textContent = sabor;
+      saborSelect.appendChild(option);
+    });
+  }
+
+  function enviarPedido(event) {
+    event.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const categoria = document.getElementById('categoria').value;
+    const sabor = document.getElementById('sabor').value;
+    const cantidad = document.getElementById('cantidad').value;
+    const detalles = document.getElementById('detalles').value;
+
+    const mensaje = `¡Hola! Soy ${nombre} y quiero encargar:\n\nCategoría: ${categoria}\nSabor: ${sabor}\nCantidad: ${cantidad}\nDetalles: ${detalles}`;
+    const numero = '524426145054';  // Cambia aquí el número de WhatsApp
+
+    const url = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensaje)}`;
+    window.location.href = url;
+  }
+</script>
+<CENTER> <A HREF=tartas.HTML> <IMG SRC=flechaizquierda.GIF WIDTH=120 HEIGTH=70>  <A HREF=mazapanymielinicio.HTML> <IMG SRC=flechaderecha.GIF WIDTH=120 HEIGTH=70> </A> 
+</BODY>
